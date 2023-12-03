@@ -52,3 +52,4 @@ if points >= 3:
     print("Congratulations, You passed the Quiz!")
 else:
     print("You lost...")
+    
