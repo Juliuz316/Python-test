@@ -57,9 +57,10 @@ def check_guess(guess, colors):
 
 
 def game():
+    print(f"Welcome to Mastermind game. You'll have to guess {MAX_COLORS} colors")
+    print(f"Valid colors are: ", *choices)
     tries = 0
     colors = generate_colors()
-    print(colors)
     while tries < 10:
         guess = guess_input()
         cor_pos, incor_pos = check_guess(guess, colors)
@@ -72,6 +73,7 @@ def game():
 
         print(f"Correct positions: {cor_pos} | Incorrect positions: {incor_pos}")
 
+    print(f"You have failed to guess correctly. The color code was: ", *colors)
 
 game()
 
