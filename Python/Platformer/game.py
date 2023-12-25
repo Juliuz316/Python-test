@@ -1,6 +1,7 @@
 import sys
 import pygame
 
+from utils.utilities import import_image, import_images
 from Python.Platformer.utils.tiles import Tile
 from utils.entities import PhysicsEntity
 
@@ -10,11 +11,13 @@ class Game:
         pygame.init()
 
         pygame.display.set_caption("Platformer")
-        self.window = pygame.display.set_mode((600, 600))
+        self.window = pygame.display.set_mode((640, 480))
         self.clock = pygame.time.Clock()
+        self.background = import_image("background.png")
 
-        self.hero = PhysicsEntity(100, 100, '\\entities\\player.png')
-        self.grass = Tile(100, 200, '\\tiles\\grass\\1.png')
+
+        self.hero = PhysicsEntity(100, 100, '/entities/player.png')
+        self.grass = Tile(100, 200, '/tiles/grass/1.png')
 
     def run(self):
         while True:
@@ -52,7 +55,7 @@ class Game:
             if self.hero.movingRight:
                 self.hero.x += self.hero.vel
 
-            self.window.fill((10, 220, 240))
+            self.window.blit(self.background,(0, 0))
 
             if self.hero.rect.colliderect(self.grass.rect):
                 self.hero.inAir = False
@@ -60,7 +63,7 @@ class Game:
             self.window.blit(self.grass.image, (self.grass.x, self.grass.y))
             self.window.blit(self.hero.image, (self.hero.x, self.hero.y))
 
-            self.hero.update()
+            self.hero.update(self.window)
             self.grass.update()
             self.clock.tick(60)
             pygame.display.update()

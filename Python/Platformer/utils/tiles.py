@@ -8,7 +8,7 @@ class Tile:
         self.x = x
         self.y = y
 
-        self.image = import_image(self, path)
+        self.image = import_image(path)
         self.rect = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
 
     def update(self):
